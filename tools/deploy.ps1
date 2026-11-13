@@ -71,7 +71,7 @@ Push-Location $root
 try {
     $body = @{ ref = $sha; environment = "$slug-local-test"; description = $Version; auto_merge = $false
                required_contexts = @(); payload = @{ version = $Version; demo = [bool]$Demo } } | ConvertTo-Json
-    $id = $body | & $gh api repos/{owner}/{repo}/deployments --input - --jq '.id'
+    $id = $body | & $gh api 'repos/{owner}/{repo}/deployments' --input - --jq '.id'
     if ($LASTEXITCODE) { throw "GitHub deployment failed" }
     & $gh api "repos/{owner}/{repo}/deployments/$id/statuses" -f state=success -f description=$Version --silent
     Write-Host "GitHub deployment $id recorded on $slug-local-test"
