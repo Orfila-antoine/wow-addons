@@ -9,6 +9,12 @@ Monorepo of WoW addons for **WoW Forever** (client `wowf` 1.60.1, `## Interface:
 
 Local install: `F:\Wow\World of Warcraft\_forever_\Interface\AddOns`. Never touch anything else in the WoW folder, except reading `WTF\...\SavedVariables`.
 
+## Commands
+
+- Deploy for tonight's test: `pwsh tools/deploy.ps1 Pedibus` (add `-Demo` for the fake group). Installs `<last tag>+dev.<sha>` and records a GitHub deployment on `pedibus-local-test` when the commit is pushed: commit and push first.
+- Build only (release): `pwsh tools/deploy.ps1 Pedibus -Version 1.4.0 -OutDir dist`.
+- Tests (from `addons/Pedibus`): `node tests/run.js tests/*_check.lua` (needs `npm i --no-save fengari` at the repo root).
+
 ## Constraints
 
 - Published addons have **no external dependency**: shared code is copied in at build time.
