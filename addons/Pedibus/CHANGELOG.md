@@ -5,6 +5,9 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versions follo
 
 ## [Unreleased]
 
+### Fixed
+- A beta version no longer counts as newer than the final release: beta testers are told when the release is out, and players on the release no longer get a wrong "new version" message.
+
 ## [1.3.1]
 
 ### Added

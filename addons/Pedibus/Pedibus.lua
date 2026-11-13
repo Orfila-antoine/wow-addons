@@ -138,15 +138,21 @@ end
 
 -- Qui a Pedibus ? ---------------------------------------------------------------
 -- Vrai si la version a est plus récente que b, nombre par nombre ("1.10" > "1.9").
+-- "+dev.abc" (build local) est ignoré ; à numéro égal, la finale passe avant la bêta ("1.4.0" > "1.4.0-beta.1").
+local function parseVersion(v)
+    local core, pre = tostring(v):match("^[^+]*"):match("^([^-]*)%-?(.*)$")
+    local t = {}
+    for n in core:gmatch("%d+") do t[#t + 1] = tonumber(n) end
+    return t, pre ~= ""
+end
 local function newer(a, b)
-    local x, y = {}, {}
-    for n in tostring(a):gmatch("%d+") do x[#x + 1] = tonumber(n) end
-    for n in tostring(b):gmatch("%d+") do y[#y + 1] = tonumber(n) end
+    local x, xpre = parseVersion(a)
+    local y, ypre = parseVersion(b)
     for i = 1, math.max(#x, #y) do
         local p, q = x[i] or 0, y[i] or 0
         if p ~= q then return p > q end
     end
-    return false
+    return ypre and not xpre
 end
 
 -- "ok" même version, "old" autre version, "pending" réponse attendue, "none" pas d'addon.

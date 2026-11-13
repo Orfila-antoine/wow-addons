@@ -27,4 +27,15 @@ alice.env.PedibusToggle(); bob.env.PedibusToggle(); step(1)
 assert(tagOf(alice, "Bob") == "v1.10 (plus récente)", "tag chez Alice : " .. tostring(tagOf(alice, "Bob")))
 assert(tagOf(bob, "Alice") == "à mettre à jour", "tag chez Bob : " .. tostring(tagOf(bob, "Alice")))
 assert(tagOf(alice, "Cara") == "", "même version : pas de tag")
+
+-- Bêta et build local : la finale passe avant la bêta, "+dev.xxx" (deploy.ps1) ne compte pas.
+W = dofile("tests/wow.lua") -- faux client neuf : le bus du test précédent livrerait la 1.10 de Bob
+local G2 = { "Dan", "Eve", "Fay" }
+local dan, eve, fay = W.client("Dan", G2), W.client("Eve", G2), W.client("Fay", G2)
+dan.version, eve.version, fay.version = "1.4.0-beta.1", "1.4.0", "1.4.0+dev.abc1234"
+for _, c in ipairs({ dan, eve, fay }) do W.load(c, FILES); W.fire(c, "PLAYER_ENTERING_WORLD") end
+step(8)
+assert(count(dan, "Pedibus 1%.4%.0[^ ]* est sorti") == 1, "la bêta doit apprendre que la finale est sortie")
+assert(count(eve, "est sorti") == 0, "la finale n'est pas plus vieille que la bêta ni que le build local")
+assert(count(fay, "est sorti") == 0, "le build local vaut la 1.4.0")
 print("version ok")
