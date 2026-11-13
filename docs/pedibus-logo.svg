@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="75%">
+      <stop offset="0" stop-color="#26324a"/>
+      <stop offset="1" stop-color="#141a26"/>
+    </radialGradient>
+    <!-- Empreinte de pied droit, orteils vers la droite (sens de marche) -->
+    <g id="step" transform="rotate(90) scale(0.85)">
+      <ellipse cx="0" cy="-2" rx="14" ry="22"/>
+      <ellipse cx="-1" cy="30" rx="11" ry="12"/>
+      <circle cx="-8" cy="-32" r="7"/>
+      <circle cx="4" cy="-34" r="5.5"/>
+      <circle cx="13" cy="-30" r="4.5"/>
+      <circle cx="19" cy="-23" r="3.8"/>
+    </g>
+    <g id="stepL" transform="scale(1 -1)"><use href="#step"/></g>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- Traces de pas derrière le bus : plus elles sont loin, plus elles s'effacent -->
+  <g fill="#f6b71a">
+    <use href="#stepL" x="76"  y="306" opacity="0.45"/>
+    <use href="#step"  x="150" y="338" opacity="0.9"/>
+  </g>
+
+  <g transform="translate(68 23) scale(0.88)">
+  <!-- Bus -->
+  <rect x="150" y="160" width="300" height="168" rx="30" fill="#f6b71a"/>
+  <!-- Fenêtres passagers + pare-brise -->
+  <g fill="#141a26">
+    <rect x="172" y="186" width="58" height="62" rx="10"/>
+    <rect x="244" y="186" width="58" height="62" rx="10"/>
+    <rect x="316" y="186" width="58" height="62" rx="10"/>
+    <path d="M390 186 h22 a16 16 0 0 1 16 16 v46 h-38 z"/>
+  </g>
+  <!-- Passagers -->
+  <g fill="#f6b71a">
+    <circle cx="201" cy="218" r="11"/><path d="M181 248 a20 16 0 0 1 40 0 z"/>
+    <circle cx="273" cy="218" r="11"/><path d="M253 248 a20 16 0 0 1 40 0 z"/>
+    <circle cx="345" cy="218" r="11"/><path d="M325 248 a20 16 0 0 1 40 0 z"/>
+  </g>
+  <!-- Bande latérale -->
+  <rect x="150" y="270" width="300" height="10" fill="#141a26" opacity="0.3"/>
+  <!-- Phare -->
+  <rect x="432" y="290" width="12" height="16" rx="4" fill="#fff4c8"/>
+
+  <!-- Roues -->
+  <g fill="#141a26" stroke="#f6b71a" stroke-width="10">
+    <circle cx="214" cy="330" r="32"/>
+    <circle cx="390" cy="330" r="32"/>
+  </g>
+  <g fill="#f6b71a">
+    <circle cx="214" cy="330" r="10"/>
+    <circle cx="390" cy="330" r="10"/>
+  </g>
+  </g>
+</svg>

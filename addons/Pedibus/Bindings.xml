@@ -1,0 +1,11 @@
+<Bindings>
+	<Binding name="PEDIBUS_FOLLOW" header="PEDIBUS" category="ADDONS">
+		PedibusFollow()
+	</Binding>
+	<Binding name="PEDIBUS_TOGGLE" category="ADDONS">
+		PedibusToggle()
+	</Binding>
+	<Binding name="PEDIBUS_GAMES" category="ADDONS">
+		PedibusOpenGames()
+	</Binding>
+</Bindings>
